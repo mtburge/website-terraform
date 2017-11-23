@@ -4,6 +4,7 @@ variable "domains" {
     default = [
         "itsmattburgess.co.uk",
         "itsmattburgess.com",
-        "itsmattburgess.uk"
+        "itsmattburgess.uk",
+        "itsmattburgess.me"
     ]
 }
