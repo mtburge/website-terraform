@@ -1,7 +1,2 @@
 # website-terraform
-WIP - Terraform scripts to run [itsmattburgess.co.uk](itsmattburgess.co.uk) on AWS behind Cloudfront to provide HTTPS support.
-
-- [x] Route 53: Domains and Zones
-- [x] S3 Buckets (itsmattburgess.co.uk, itsmattburgess.com, itsmattburgess.uk)
-- [x] Configure cloudfront
-- [ ] CI Pipelines (CircleCI)
+Terraform scripts to configure [itsmattburgess.co.uk](itsmattburgess.co.uk) on AWS behind CloudFront to provide HTTPS support. I wrote a post on Medium about using CloudFront to host a HTTPS enabled website. (https://medium.com/@itsmattburgess/hosting-a-https-website-using-aws-s3-and-cloudfront-ee6521df03b9)[https://medium.com/@itsmattburgess/hosting-a-https-website-using-aws-s3-and-cloudfront-ee6521df03b9]
