@@ -15,7 +15,7 @@ resource "aws_route53_record" "www" {
     type = "A"
 
     alias {
-      name = "s3-website.eu-west-2.amazonaws.com."
+      name = "${element(data.aws_s3_bucket.website.*.website_domain, count.index)}"
       zone_id = "${element(data.aws_s3_bucket.website.*.hosted_zone_id, count.index)}"
       evaluate_target_health = true
     }

@@ -51,5 +51,4 @@ resource "aws_cloudfront_distribution" "website" {
         ssl_support_method = "sni-only"
         minimum_protocol_version = "TLSv1.1_2016"
     }
-
 }
