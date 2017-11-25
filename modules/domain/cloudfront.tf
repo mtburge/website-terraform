@@ -10,13 +10,13 @@ resource "aws_cloudfront_distribution" "website" {
     comment = "${var.domain}"
     default_root_object = "index.html"
     price_class = "PriceClass_100"
+    depends_on = ["aws_s3_bucket.domain"]
     aliases = [
-        "${var.domain}",
-        "www.${var.domain}"
+        "${var.domains}"
     ]
 
     origin {
-        domain_name = "${var.bucket_domain}"
+        domain_name = "${aws_s3_bucket.domain.bucket_domain_name}"
         origin_id = "${var.domain}"
     }
 

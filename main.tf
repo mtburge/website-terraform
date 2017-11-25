@@ -18,22 +18,42 @@ terraform {
     }
 }
 
-module "s3" {
-    source = "modules/s3"
-    domains = "${var.domains}"
+module "itsmattburgesscouk" {
+    source = "modules/domain"
+    domain = "itsmattburgess.co.uk"
+
+    domains = [
+        "itsmattburgess.co.uk",
+        "itsmattburgess.com",
+        "itsmattburgess.uk",
+        "itsmattburgess.me",
+        "www.itsmattburgess.co.uk",
+        "www.itsmattburgess.com",
+        "www.itsmattburgess.uk",
+        "www.itsmattburgess.me"
+    ]
 }
 
-module "cloudfront" {
-    source = "modules/cloudfront"
-    domain = "${element(var.domains, 0)}"
-    bucket = "${module.s3.bucket}"
-    bucket_domain = "${module.s3.bucket_domain}"
+module "itsmattburgesscom" {
+    source = "modules/alias"
+    domain = "itsmattburgess.com"
+
+    cloudfront_domain = "${module.itsmattburgesscouk.cloudfront_domain}"
+    cloudfront_zone = "${module.itsmattburgesscouk.cloudfront_zone}"
 }
 
-module "route53" {
-    source = "modules/route53"
-    domain = "${element(var.domains, 0)}"
-    aliases = "${slice(var.domains, 1, length(var.domains))}"
-    cloudfront_endpoint = "${module.cloudfront.endpoint}"
-    cloudfront_zone_id = "${module.cloudfront.zone_id}"
+module "itsmattburgessuk" {
+    source = "modules/alias"
+    domain = "itsmattburgess.uk"
+
+    cloudfront_domain = "${module.itsmattburgesscouk.cloudfront_domain}"
+    cloudfront_zone = "${module.itsmattburgesscouk.cloudfront_zone}"
+}
+
+module "itsmattburgessme" {
+    source = "modules/alias"
+    domain = "itsmattburgess.me"
+
+    cloudfront_domain = "${module.itsmattburgesscouk.cloudfront_domain}"
+    cloudfront_zone = "${module.itsmattburgesscouk.cloudfront_zone}"
 }
